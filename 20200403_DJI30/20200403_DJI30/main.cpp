@@ -1,4 +1,4 @@
-/*美股測試*/
+/*美股道瓊30測試*/
 #include <iostream>
 #include <fstream>
 #include <sstream>
