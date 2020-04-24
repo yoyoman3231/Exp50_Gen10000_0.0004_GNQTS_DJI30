@@ -385,15 +385,15 @@ void  measure()
 
 			random = rand() / 32767.0;
 			
-			/*if (random < beta[j]) {
+			if (random < beta[j]) {
 				partical[i][j] = 1;
 			}
-			else partical[i][j] = 0;*///隨機給0或1
-			if (j == 10)
+			else partical[i][j] = 0;//隨機給0或1
+			/*if (j == 10)
 			{
 				partical[i][j] = 1;
 			}
-			else partical[i][j] = 0;
+			else partical[i][j] = 0;*/
 
 			if (partical[i][j] == 1)
 			{
@@ -422,26 +422,16 @@ void standardization()
 				if (k == 0)
 				{
 					buy_lots = share_money / all_stock[stock_index[i][j]][k];//能夠買幾股
-					//buy_papper = share_money / (all_stock[stock_index[i][j]][k] * 1000.0 + all_stock[stock_index[i][j]][k] * 1.425);//可買張數
 					all_buy_lots[j] = buy_lots;
 					all_remain_fund = share_money - buy_lots * all_stock[stock_index[i][j]][k];
 					real_all_remain_fund[j] = all_remain_fund;//把買完各股剩餘資金存入陣列中進行判斷
-					//fee = all_stock[stock_index[i][j]][k] * buy_papper * 1000 * fee_rate;//手續費 v
 					n_fund_standardization[i][j][k] = share_money;
-					//n_fund_standardization[i][j][k] = share_money - all_stock[stock_index[i][j]][k] * buy_papper * 1000 * fee_rate;//資金水位 v
 
 				}
 				else
 				{
 					n_fund_standardization[i][j][k] = all_stock[stock_index[i][j]][k] * buy_lots + all_remain_fund;
-					/*n_fund_standardization[i][j][k] = all_stock[stock_index[i][j]][k] * buy_papper -
-					all_stock[stock_index[i][j]][k] * buy_papper * 1000 * fee_rate - buy_papper * all_stock[stock_index[i][j]][k] * 1000 * tax_rate + all_remain_fund;*/
-
 				}
-				/*if (share_money < 0)
-				{
-					n_fund_standardization[i][j][k] = 0;
-				}*/
 			}
 
 		}
@@ -473,15 +463,11 @@ void test_standardization(int a)//測試期資金水位計算
 		{
 			for (int s = 0; s < test_stock_index; s++)
 			{
-				//cout << test_stock_no[s] << endl;
 				if (final_portfolio[v] == test_stock_no[s])
 				{
-					//cout << s << endl;
 					for (int k = 0; k < test_day; k++) {
-						//	test_all_stock[s][k] = 0;
 						if (k == 0)
 						{
-							//test_one_of_price = test_all_stock[s][k] * 1000 + test_all_stock[s][k] * 1.425;//單張價格
 							test_buy_lots = test_share_money / test_all_stock[s][k];//可買張數
 							test_all_buy_lots[s] = test_buy_lots;
 							test_all_remain_fund = test_share_money - test_buy_lots * test_all_stock[s][k];//買完各股剩餘資金
